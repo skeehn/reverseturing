@@ -1,0 +1,40 @@
+# backend/requirements.txt
+# Web Framework
+flask==2.3.3
+flask-socketio==5.3.6
+flask-cors==4.0.0
+flask-sqlalchemy==3.0.5
+flask-login==0.6.2
+flask-bcrypt==1.0.1
+
+# Database
+psycopg2-binary==2.9.7
+sqlalchemy==2.0.21
+alembic==1.12.0
+
+# Cache/Queue
+redis==4.6.0
+celery==5.3.0
+
+# ML/AI
+transformers==4.35.2
+torch==2.1.0
+datasets==2.14.0
+peft==0.6.0
+bitsandbytes==0.41.0
+accelerate==0.24.1
+sentencepiece==0.1.99
+protobuf==3.20.3
+
+# Utilities
+python-dotenv==1.0.0
+python-socketio==5.10.0
+eventlet==0.33.3
+numpy==1.24.3
+pandas==2.0.3
+tqdm==4.66.1
+
+# Development
+pytest==7.4.2
+black==23.9.1
+pylint==2.17.5

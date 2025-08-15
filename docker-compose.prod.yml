@@ -1,0 +1,29 @@
+version: '3.8'
+services:
+  frontend:
+    build: ./frontend
+    ports: ["80:80"]
+    
+  backend:
+    build: ./backend
+    environment:
+      - GPU_ENABLED=true
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+              
+  postgres:
+    image: postgres:14
+    volumes: ["./data:/var/lib/postgresql/data"]
+    
+  redis:
+    image: redis:7-alpine
+    
+  celery:
+    build: ./backend
+    command: celery worker -A training.training_worker
+    depends_on: [redis, postgres]
