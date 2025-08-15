@@ -367,7 +367,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **🎭 Ready to fool some AI? Let the games begin! 🎮**
 
-[🚀 Start Playing](#-quick-start) • [⭐ Star on GitHub](https://github.com/your-repo) • [🤝 Contribute](#-contributing)
+[🚀 Start Playing](#-quick-start) • [⭐ Star on GitHub](https://github.com/skeehn/reverseturing) • [🤝 Contribute](#-contributing)
 
 ---
 
