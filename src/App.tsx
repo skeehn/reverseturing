@@ -11,6 +11,7 @@ import Lobby from './components/Lobby';
 import Leaderboard from './components/Leaderboard';
 import Profile from './components/Profile';
 import Navigation from './components/Navigation';
+import ErrorBoundary, { GameErrorBoundary } from './components/ErrorBoundary';
 
 // Context
 import { AuthProvider, useAuth } from './context/AuthContext';
@@ -18,31 +19,35 @@ import { SocketProvider } from './context/SocketContext';
 
 function App() {
   return (
-    <AuthProvider>
-      <Router>
-        <div className="App min-h-screen bg-gray-900 text-white">
-          <Navigation />
-          <main className="container mx-auto px-4 py-8">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/lobby" element={<ProtectedRoute><Lobby /></ProtectedRoute>} />
-              <Route path="/room/:roomId" element={
-                <ProtectedRoute>
-                  <SocketProvider>
-                    <GameRoom />
-                  </SocketProvider>
-                </ProtectedRoute>
-              } />
-              <Route path="/leaderboard" element={<Leaderboard />} />
-              <Route path="/analytics" element={<Analytics />} />
-              <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
-            </Routes>
-          </main>
-        </div>
-      </Router>
-    </AuthProvider>
+    <ErrorBoundary>
+      <AuthProvider>
+        <Router>
+          <div className="App min-h-screen bg-gray-900 text-white">
+            <Navigation />
+            <main className="container mx-auto px-4 py-8">
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/lobby" element={<ProtectedRoute><Lobby /></ProtectedRoute>} />
+                <Route path="/room/:roomId" element={
+                  <ProtectedRoute>
+                    <SocketProvider>
+                      <GameErrorBoundary>
+                        <GameRoom />
+                      </GameErrorBoundary>
+                    </SocketProvider>
+                  </ProtectedRoute>
+                } />
+                <Route path="/leaderboard" element={<Leaderboard />} />
+                <Route path="/analytics" element={<Analytics />} />
+                <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+              </Routes>
+            </main>
+          </div>
+        </Router>
+      </AuthProvider>
+    </ErrorBoundary>
   );
 }
 
